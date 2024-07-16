@@ -7,18 +7,10 @@ import Svg, { Circle, G, Path, Text as SvgText } from "react-native-svg";
 import { formatterEuro } from "../../utils/format-number";
 import CircleAnimation from "./CircleAnimation";
 
-const color = ["#183561", "#225b6c", "#157f99", "#18756b", "#29a992", "#96d2d0", "#1665a0", "#1685bd", "#4ca0cc", "#6dc8cb"];
+const defaultColors = ["#183561", "#225b6c", "#157f99", "#18756b", "#29a992", "#96d2d0", "#1665a0", "#1685bd", "#4ca0cc", "#6dc8cb"];
 
-export interface PieChartProps {
-    data: any[];
-    keyLabel: string;
-    keyValue: string;
-    loading?: boolean;
-    error?: boolean;
-    primaryKey: string;
-}
-const PieChart = (props: PieChartProps) => {
-    const { data, keyLabel, keyValue, loading, error, primaryKey } = props;
+
+const PieChart = ({data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors}) => {
     const { t } = useTranslation("global");
     const [sizes, setSizes] = useState({ width: 0, height: 0 });
     const [clonedData, setClonedData] = useState(null);
@@ -31,7 +23,7 @@ const PieChart = (props: PieChartProps) => {
     useEffect(() => {
         if (data && data.length) {
             const combinedData = combineDataByPrimaryKey(data, primaryKey, keyValue);
-            const cloned = combinedData.slice(0, 10); // Filtra los top 10 datos
+            const cloned = combinedData.slice(0, 10); // Filter top ten rows
             setClonedData(cloned);
         }
     }, [data]);
@@ -67,14 +59,14 @@ const PieChart = (props: PieChartProps) => {
 
     const radius = Math.min(sizes.width, sizes.height) / 2;
 
-    const pie = d3.pie().value((d: any) => d[keyValue])(clonedData || []);
+    const pie = d3.pie().value((d) => d[keyValue])(clonedData || []);
     const arc = d3.arc().innerRadius(0).outerRadius(radius);
     const labelArc = d3
         .arc()
         .innerRadius(radius - 40)
         .outerRadius(radius - 40);
 
-    const totalValue = clonedData ? d3.sum(clonedData, (d: any) => d[keyValue]) : null;
+    const totalValue = clonedData ? d3.sum(clonedData, (d) => d[keyValue]) : null;
 
     const toggleModal = () => {
         setIsModalVisible(!isModalVisible);
@@ -100,7 +92,7 @@ const PieChart = (props: PieChartProps) => {
                                     const percentage = (d.value / totalValue) * 100;
                                     return (
                                         <G key={i}>
-                                            <Path d={arc(d)} fill={color[i % color.length]} />
+                                            <Path d={arc(d)} fill={colors[i % colors.length]} />
                                             {percentage > 8 && (
                                                 <SvgText
                                                     transform={`translate(${labelArc.centroid(d)})`}
@@ -132,7 +124,7 @@ const PieChart = (props: PieChartProps) => {
                             {clonedData &&
                                 clonedData.map((item, index) => (
                                     <View key={index} style={styles.legendItem}>
-                                        <View style={[styles.colorBox, { backgroundColor: color[index % color.length] }]} />
+                                        <View style={[styles.colorBox, { backgroundColor: colors[index % colors.length] }]} />
                                         <Text style={styles.legendText}>
                                             {item[keyLabel]}: {formatterEuro(item[keyValue])}
                                         </Text>

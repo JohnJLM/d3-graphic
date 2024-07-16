@@ -10,11 +10,10 @@ import {
 } from "react-native";
 import Svg, { G, Line, Rect, Text as SvgText } from "react-native-svg";
 
-import filterByTopTen from "../../utils/d3/filterByTopTen";
-import { formatterEuro, formatterEuroToD3 } from "../../utils/format-number";
+import { formatterEuro, formatterEuroToD3 } from "../utils/format-number";
 import CurtainToAnimate from "./CurtainToAnimate";
 
-const color = [
+const defaultColors = [
   "#183561",
   "#225b6c",
   "#157f99",
@@ -27,17 +26,8 @@ const color = [
   "#6dc8cb",
 ];
 
-export interface TopTenBarsProps {
-  data: any[];
-  keyLabel: string;
-  keyValue: string;
-  loading: boolean;
-  error: boolean;
-  primaryKey: string;
-}
 
-const TopTenBars = (props: TopTenBarsProps) => {
-  const { data, keyLabel, keyValue, loading, error, primaryKey } = props;
+const TopTenBars = ({ data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors}) => {
   const [sizes, setSizes] = useState({ width: 0, height: 0 });
   const [clonedData, setClonedData] = useState(null);
   //Animation
@@ -66,13 +56,7 @@ const TopTenBars = (props: TopTenBarsProps) => {
 
   useEffect(() => {
     if (data) {
-      const cloned = filterByTopTen(
-        data,
-        keyValue,
-        keyLabel,
-        keyLabel === "clientNom",
-        t
-      );
+      const cloned = filterByTopTen(data, keyValue);
       setClonedData(cloned);
       handleContainerPress();
     }
@@ -88,6 +72,9 @@ const TopTenBars = (props: TopTenBarsProps) => {
       }
     }
   }, [svgRendered, clonedData]);
+
+  const filterByTopTen = (data, keyValue) =>
+    data.sort((a, b) => b[keyValue] - a[keyValue]);
 
   const onLayout = (event) => {
     const { width, height } = event.nativeEvent.layout;
@@ -212,7 +199,7 @@ const TopTenBars = (props: TopTenBarsProps) => {
                       fill={
                         selectedBar === row[primaryKey]
                           ? "#ad234f"
-                          : color[i % color.length]
+                          : colors[i % colors.length]
                       }
                       x={2}
                       rx={5}

@@ -9,18 +9,8 @@ import {
 } from "react-native";
 import Svg, { G, Line, Rect, Text as SvgText } from "react-native-svg";
 
-import { formatterEuroToD3 } from "../../utils/format-number";
-import {
-  d3formatDate,
-  formatSimpleDateToMonthName,
-} from "../../utils/format-time";
+import { formatterEuroToD3 } from "../utils/format-number";
 import CurtainToAnimate from "./CurtainToAnimate";
-
-const formatAxisX = (value, format) => {
-  if (format === "hour") return `${value}:00`;
-  if (format === "date") return d3formatDate(value, "DD-MM-YYYY");
-  if (format === "month") return formatSimpleDateToMonthName(value);
-};
 
 const getRangeMaxValue = (maxValue) => {
   if (maxValue < 100) return 30;
@@ -44,7 +34,12 @@ const filterDataByStoreId = (data, storeId) => {
   };
 };
 
-export default function MultipleHoursBars({ data, storeId, loading, error }) {
+export default function MultipleHorizontalBars({
+  data,
+  storeId,
+  loading,
+  error,
+}) {
   const [filteredData, setFilteredData] = useState(data);
   const [sizes, setSizes] = useState({ width: 0, height: 0 });
   const svgRef = useRef(null);
