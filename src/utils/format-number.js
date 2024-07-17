@@ -1,6 +1,6 @@
 import { cloneDeep } from "lodash";
 
-export function formatterDiscount(discount: number) {
+export function formatterDiscount(discount) {
     const clonedDiscount = cloneDeep(discount);
     const formatterWithEuro = `${formatterEuro(clonedDiscount)}`;
     const newPercent = formatterWithEuro.substring(0, formatterWithEuro.length - 1);
@@ -8,7 +8,7 @@ export function formatterDiscount(discount: number) {
     return `${newPercent}%`;
 }
 
-export function formatterEuro(priceToFormatter: number) {
+export function formatterEuro(priceToFormatter) {
     // Asegúrate de que el precio sea un número
     if (typeof priceToFormatter !== "number" || isNaN(priceToFormatter)) {
         // throw new Error("El precio debe ser un número válido.");
@@ -33,7 +33,7 @@ export function formatterEuro(priceToFormatter: number) {
     return formattedPrice + " €";
 }
 
-export function formatterEuroToD3(priceToFormatter: number) {
+export function formatterEuroToD3(priceToFormatter) {
     // Asegurarse de que el precio sea un número entero
     if (!Number.isInteger(priceToFormatter) && !Number(priceToFormatter)) {
         return "0 €";

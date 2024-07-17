@@ -12,22 +12,11 @@ import Svg, { G, Line, Rect, Text as SvgText } from "react-native-svg";
 
 import { formatterEuro, formatterEuroToD3 } from "../utils/format-number";
 import CurtainToAnimate from "./CurtainToAnimate";
-
-const defaultColors = [
-  "#183561",
-  "#225b6c",
-  "#157f99",
-  "#18756b",
-  "#29a992",
-  "#96d2d0",
-  "#1665a0",
-  "#1685bd",
-  "#4ca0cc",
-  "#6dc8cb",
-];
+import { defaultColors } from "./colors";
 
 
-const TopTenBars = ({ data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors}) => {
+
+const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors}) => {
   const [sizes, setSizes] = useState({ width: 0, height: 0 });
   const [clonedData, setClonedData] = useState(null);
   //Animation
@@ -323,4 +312,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TopTenBars;
+export default MultipleHorizontalBars;

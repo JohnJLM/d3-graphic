@@ -1,17 +1,23 @@
 {
   "name": "d3-graphic",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "D3 graphic to React Native",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir lib",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JohnJLM/d3-graphic.git"
+    "url": "https://github.com/JohnJLM/d3-graphic.git"
   },
+  "keywords": [
+    "react-native",
+    "d3",
+    "charts"
+  ],
   "author": "JohnJLM",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/JohnJLM/d3-graphic/blob/main/README.md",
   "dependencies": {
     "d3": "^7.9.0",
@@ -19,5 +25,12 @@
     "react": "^18.2.0",
     "react-native": "^0.74.3",
     "react-native-svg": "^15.4.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.8",
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.13.0"
   }
 }
