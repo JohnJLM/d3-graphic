@@ -110,7 +110,7 @@ const PieChart = ({
         <View
           style={[
             styles.chartContainer,
-            { width: sizes.width, height: sizes.height },
+            { width: sizes.width || "100%", height: sizes.height || "100%" },
           ]}
         >
           {clonedData && (
@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    width: "75%",
   },
   chartContainer: {
     position: "relative",

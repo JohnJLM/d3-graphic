@@ -78,7 +78,7 @@ const MultipleVerticalBars = ({
     setSvgRendered(true); // Mark SVG as rendered
   };
 
-  const margin = { top: 35, right: 25, bottom: 85, left: 35 };
+  const margin = { top: 35, right: 25, bottom: 45, left: 75 };
   const height = sizes.height - margin.top - margin.bottom;
   const barWidth = 22.6;
   const barSpacing = 10;
@@ -114,8 +114,8 @@ const MultipleVerticalBars = ({
 
   // Helper function to truncate text with ellipsis
   const truncateText = (text, maxWidth) => {
-    if (text?.length * 4 <= maxWidth) return text;
-    return text.substring(0, Math.floor(maxWidth / 4) - 3) + "...";
+    if (text?.length * 3 <= maxWidth) return text;
+    return text.substring(0, Math.floor(maxWidth / 3.5) - 3) + "...";
   };
 
   const calculateTooltipWidth = (text) => {
@@ -148,7 +148,7 @@ const MultipleVerticalBars = ({
           {clonedData && (
             <CurtainToAnimate
               height={height}
-              style={[styles.curtain, { width: width + 9 }]}
+              style={[styles.curtain, { width: width + 40 }]}
               key={animateKey}
             />
           )}
@@ -170,16 +170,13 @@ const MultipleVerticalBars = ({
                         xScale(row[primaryKey]) + xScale.bandwidth() / 2
                       }, 0)`}
                     >
-                      <Line y1={0} y2={6} stroke="black" />
+                      <Line y1={0} y2={10} stroke="black" />
                       <SvgText
-                        y={10}
-                        dy=".71em"
+                        dy="1.75em"
                         textAnchor="end"
                         fontSize={11}
                         fontWeight="bold"
-                        transform={`rotate(-45 ${
-                          xScale(row[primaryKey]) + barWidth / 2
-                        }, 10)`}
+                        transform={`rotate(-45)`}
                       >
                         {row[keyLabel]
                           ? truncateText(row[keyLabel], xScale.bandwidth())
@@ -197,7 +194,7 @@ const MultipleVerticalBars = ({
                       x={xScale(row[primaryKey])}
                       y={yScale(row[keyValue])}
                       width={barWidth}
-                      height={height - yScale(row[keyValue])}
+                      height={height - yScale(row[keyValue]) - 3}
                       fill={
                         selectedBar === row[primaryKey]
                           ? "#ad234f"

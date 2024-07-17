@@ -14,7 +14,16 @@ import { formatterEuro, formatterEuroToD3 } from "../utils/format-number";
 import CurtainToAnimate from "./CurtainToAnimate";
 import { defaultColors } from "./colors";
 
-const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors, withoutDataMessage = "Without Data"}) => {
+const MultipleHorizontalBars = ({
+  data,
+  keyLabel,
+  keyValue,
+  loading,
+  error,
+  primaryKey,
+  colors = defaultColors,
+  withoutDataMessage = "Without Data",
+}) => {
   const [sizes, setSizes] = useState({ width: 0, height: 0 });
   const [clonedData, setClonedData] = useState(null);
   //Animation
@@ -69,7 +78,7 @@ const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, prim
     setSvgRendered(true); // Mark SVG as rendered
   };
 
-  const margin = { top: 35, right: 25, bottom: 10, left: 85 };
+  const margin = { top: 35, right: 25, bottom: 10, left: 70 };
   const width = sizes.width - margin.left - margin.right;
   const barHeight = 22.6;
   const barSpacing = 10;
@@ -105,8 +114,8 @@ const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, prim
 
   // Helper function to truncate text with ellipsis
   const truncateText = (text, maxWidth) => {
-    if (text?.length * 4 <= maxWidth) return text;
-    return text.substring(0, Math.floor(maxWidth / 4) - 3) + "...";
+    if (text?.length * 3 <= maxWidth) return text;
+    return text.substring(0, Math.floor(maxWidth / 3.5) - 3) + "...";
   };
 
   const calculateTooltipWidth = (text) => {
@@ -162,15 +171,13 @@ const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, prim
                     >
                       <Line x1={0} x2={-6} stroke="black" />
                       <SvgText
-                        x={-10}
-                        dy=".35em"
+                        x={-8}
+                        dy=".25em"
                         textAnchor="end"
                         fontSize={11}
                         fontWeight="bold"
                       >
-                        {row[keyLabel]
-                          ? truncateText(row[keyLabel], margin.left - 20)
-                          : ""}
+                        {row[keyLabel] ? truncateText(row[keyLabel], 35) : ""}
                       </SvgText>
                     </G>
                   ))}
@@ -188,7 +195,7 @@ const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, prim
                           ? "#ad234f"
                           : colors[i % colors.length]
                       }
-                      x={2}
+                      x={4}
                       rx={5}
                       ry={5}
                       width={xScale(row[keyValue])}
