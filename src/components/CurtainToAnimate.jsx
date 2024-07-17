@@ -10,7 +10,7 @@ import { Animated, Easing } from "react-native";
  * @returns A square curtain to animated the svg bars
  */
 
-export default function CurtainToAnimate({height = 0,width,style,animationDuration,}) {
+export default function CurtainToAnimate({height,width,style,animationDuration,}) {
   const curtainValue = new Animated.Value(height ?? width);
 
   useEffect(() => {

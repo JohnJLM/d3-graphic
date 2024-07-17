@@ -12,7 +12,7 @@ import { Animated, Easing } from "react-native";
  */
 
 export default function CircleAnimation({ radius, top, left, color, animationDuration }) {
-  const animatedValue = new Animated.Value(radius + 10); // Aumentar el radio inicial
+  const animatedValue = new Animated.Value(radius + 10); 
 
   useEffect(() => {
     Animated.timing(animatedValue, {

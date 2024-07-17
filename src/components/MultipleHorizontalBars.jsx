@@ -14,9 +14,7 @@ import { formatterEuro, formatterEuroToD3 } from "../utils/format-number";
 import CurtainToAnimate from "./CurtainToAnimate";
 import { defaultColors } from "./colors";
 
-
-
-const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors}) => {
+const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors, withoutDataMessage = "Without Data"}) => {
   const [sizes, setSizes] = useState({ width: 0, height: 0 });
   const [clonedData, setClonedData] = useState(null);
   //Animation
@@ -124,7 +122,7 @@ const MultipleHorizontalBars = ({ data, keyLabel, keyValue, loading, error, prim
           color="#c1c1c1"
         />
       )}
-      {error && <Text style={styles.error}>{t("without_data_label")}</Text>}
+      {error && <Text style={styles.error}>{withoutDataMessage}</Text>}
       <ScrollView
         ref={scrollViewRef}
         nestedScrollEnabled={Platform.OS === "android"} // only for Android

@@ -14,7 +14,16 @@ import { formatterEuro, formatterEuroToD3 } from "../utils/format-number";
 import CurtainToAnimate from "./CurtainToAnimate";
 import { defaultColors } from "./colors";
 
-const MultipleVerticalBars = ({ data, keyLabel, keyValue, loading, error, primaryKey, colors = defaultColors }) => {
+const MultipleVerticalBars = ({
+  data,
+  keyLabel,
+  keyValue,
+  loading,
+  error,
+  primaryKey,
+  colors = defaultColors,
+  withoutDataMessage = "Without Data",
+}) => {
   const [sizes, setSizes] = useState({ width: 0, height: 0 });
   const [clonedData, setClonedData] = useState(null);
   // Animation
@@ -122,7 +131,7 @@ const MultipleVerticalBars = ({ data, keyLabel, keyValue, loading, error, primar
           color="#c1c1c1"
         />
       )}
-      {error && <Text style={styles.error}>{"without_data_label"}</Text>}
+      {error && <Text style={styles.error}>{withoutDataMessage}</Text>}
       <ScrollView
         ref={scrollViewRef}
         horizontal
@@ -165,9 +174,12 @@ const MultipleVerticalBars = ({ data, keyLabel, keyValue, loading, error, primar
                       <SvgText
                         y={10}
                         dy=".71em"
-                        textAnchor="middle"
+                        textAnchor="end"
                         fontSize={11}
                         fontWeight="bold"
+                        transform={`rotate(-45 ${
+                          xScale(row[primaryKey]) + barWidth / 2
+                        }, 10)`}
                       >
                         {row[keyLabel]
                           ? truncateText(row[keyLabel], xScale.bandwidth())
@@ -184,7 +196,7 @@ const MultipleVerticalBars = ({ data, keyLabel, keyValue, loading, error, primar
                       key={i}
                       x={xScale(row[primaryKey])}
                       y={yScale(row[keyValue])}
-                      width={xScale.bandwidth()}
+                      width={barWidth}
                       height={height - yScale(row[keyValue])}
                       fill={
                         selectedBar === row[primaryKey]
@@ -240,26 +252,27 @@ const MultipleVerticalBars = ({ data, keyLabel, keyValue, loading, error, primar
           width={margin.left}
           height={sizes.height}
         >
-          <G transform={`translate(${margin.left - 2}, ${margin.top})`}>
-            <Line
-              y1={0}
-              y2={height}
-              x1={-margin.left + 2}
-              x2={-margin.left + 2}
-              stroke="black"
-            />
-            {yScale.ticks(5).map((tick, i) => (
-              <G key={i} transform={`translate(0, ${yScale(tick)})`}>
+          <G transform={`translate(${margin.left - 10},${margin.top})`}>
+            <Line x1={0} x2={0} y1={0} y2={height} stroke="black" />
+            {yScale.ticks(6).map((tick, i) => (
+              <G key={i}>
+                <Line
+                  x1={-6}
+                  x2={0}
+                  y1={yScale(tick)}
+                  y2={yScale(tick)}
+                  stroke="black"
+                />
                 <SvgText
-                  x={-margin.left + 7}
+                  x={-9}
+                  y={yScale(tick)}
                   dy=".32em"
                   textAnchor="end"
-                  fontSize={11}
+                  fontSize="11"
                   fontWeight="bold"
                 >
-                  {formatterEuroToD3(tick)}
+                  {`${formatterEuroToD3(tick)}`}
                 </SvgText>
-                <Line x1={-6} x2={0} stroke="black" />
               </G>
             ))}
           </G>
