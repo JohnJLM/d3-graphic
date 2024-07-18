@@ -1,10 +1,10 @@
 # d3-graphic
 
-`d3-graphic` is a React Native package that utilizes D3, react-native-svg, react, and lodash to display horizontal bars, vertical bars, and pie charts. This package is designed to make dashboard development in React Native much easier.
+`d3-graphic` es un paquete para React Native que utiliza D3, react-native-svg, react y lodash para mostrar gráficos de barras horizontales, verticales y gráficos de pastel. Este paquete está diseñado para facilitar el desarrollo de un dashboard en React Native.
 
-## Installation
+## Instalación
 
-To install this package, you can use npm or yarn:
+Para instalar este paquete, puedes usar npm o yarn:
 
 ### npm
 
@@ -18,33 +18,33 @@ npm install d3-graphic
 yarn add d3-graphic
 ```
 
-## Components
+## Componentes
 
-The d3-graphic package includes the following components:
+El paquete d3-graphic incluye los siguientes componentes:
 
 - MultipleHorizontalBars
 - MultipleVerticalBars
 - PieChart
 
-## Common Props
+## Props Comunes
 
-The three mentioned components share the same props:
+Los tres componentes mencionados comparten las mismas props:
 
-- data: An array of JSON objects containing at least three properties: one for the label, one for the value, and one for the id.
-- keyLabel: The JSON property that the component uses for the label.
-- keyValue: The JSON property that the component uses for the value.
-- primaryKey: The JSON property that acts as the ID.
+- data: Un array de objetos JSON que contiene al menos tres propiedades: una para el label, una para el value y otra para el id.
+- keyLabel: La propiedad del JSON que el componente usa para el label.
+- keyValue: La propiedad del JSON que el componente usa para el value.
+- primaryKey: La propiedad del JSON que actúa como ID.
 
-## Optional props:
+## Props opcionales:
 
-- loading: Boolean that controls whether a spinner is shown while true.
-- error: Boolean that shows an error message.
-- withoutDataMessage: String to customize the message displayed when there is no data.
-- color: An array of strings with the colors of the bars or sections of the chart.
+- loading: Booleano que controla si se muestra un spinner mientras esté en true.
+- error: Booleano que muestra un mensaje de error.
+- withoutDataMessage: String para personalizar el mensaje que se muestra cuando no hay datos.
+- color: Un array de strings con los colores de las barras o secciones del gráfico.
 
-## Usage Example
+## Ejemplo de Uso
 
-Below is an example of how to use the MultipleHorizontalBars component:
+A continuación se muestra un ejemplo de cómo utilizar el componente MultipleHorizontalBars:
 
 ```jsx
 import React from "react";
@@ -70,13 +70,13 @@ const data = [
 />;
 ```
 
-## Example Project
+## Proyecto de Ejemplo
 
-You can find a project using d3-graphic on the following GitHub link. This project provides practical examples of how to use the components included in the package.
+Puedes encontrar un proyecto que utiliza d3-graphic en el siguiente enlace de GitHub. Este proyecto proporciona ejemplos prácticos de cómo usar los componentes incluidos en el paquete.
 
-[Example Project on GitHub](https://github.com/JohnJLM/d3-graphic-react-native.git)
+[Proyecto de Ejemplo en GitHub](https://github.com/JohnJLM/d3-graphic-react-native.git)
 
-### Animations
+### Animaciones
 
 - Horizontal Bars
 
@@ -90,7 +90,7 @@ You can find a project using d3-graphic on the following GitHub link. This proje
 
 ![Pie chart](https://lh3.googleusercontent.com/fife/ALs6j_GlFg-oyzBTMfhhGJ7YEVd18DiDaHhSZpSNJPQ--tMO_CNZH4JLFkwgmlCyVLxCG-siEfTkLmwzLamAgd0-v1iEIh8UOgJzBo4XmpMOoa2e9pPKfhzjwHuK_dPNw1VRNZvvRfHbHppr9MuazBds-ZkjmjQAqpOUPHRMk2FMWO4kfZn11d-nU2Mew6BzB5FprZC8aNLlhU2j_xlNKtdJWiPMAg1HGnWperIn94OscnhmATB2LsTh5-9pa6paPAB1AGPlkw8A_vuLr_l_QNZq-G39xgTJD25YAu07ycJDqmC25uv11L-t63QvuSoeLPZ54e0cIlTZe2Kxf_rOfemcxqFMJ5xWqOPcSUW-_4ZXhqKbFc3dlj_wxGepZi_AQOpY70DD9t0-uIaGAGBZVkQCuP56tzqRT4NC1zjVW3h8JS1WNqD9me0_fo97KD-6-ehc0YMvbmnAyzmJCf5a9zhdse1nzp-5gND-vTeXhXfEQuMxYNwadwT-eFPMm0RyZDELLMk62VcglZ6GMRXhCWbgwyboVkaGLyw-Wekyv7wZx5AoDvD0pU_B5zz-_LTY0ce-WXU2E-SQzVW0XUQsaON6UbnoQVXzeBcAMCRYVAJ7fbXL2568ORrbQYHu9QdJn3PsoBMeaMOAIQHYXXCMobEZjIZyCXuEh4ozizZMcMR7hh71HVb1M5BQMT8Othc8yBFSRvoVYvofI1DgJ4R_lXg6SaVj9RAFy4TMPYZqWRqhYs274Ji_COaKS3t21Wz95-ZNz1R2A98x1ej-OINl1N51p05r2SF1azfy5MsDLaK0Buz4pnVpl41mRyFV8DmKErMfeIs61-ZRVxaCwKkm1m0KCeRG2N670J-3QPXxR4yyRzmfoEnH2Jon2gSQ_4zWDm64OxKpCXlw-YFSQnlDU_H1CeumyKJgYOYzq9j_Yw-r3y0cGyCITqy9XrDfblrTnbzK-InuKWLsFYYvw5zofyhuqUpE26xmpTZxvjWlZxM1R2cs4G3-aTNc83Zx2a26pplz6X3nuYOwLnCodysQq6K0x2zGjLFbPIW9lckNtqfZ6l294zdjJnqhXqICrTmRx8GjFl4JwRB_EbuhRoxNCGk8km3bsgstuPfeDLRIZpgKLm67aqProFiurw1eaugUuwvhSyvzVDPB0c7wZz8VL_pFuH8_LV73JXnAhJkQtDyNf1EI3c_vRgy96KO_d8DbNIwE5nXBbqDussp21dV2L2txLdNfRmpGq8IdBm6wQQ5VU7k8sO1gqgfFnc1kGm_VaKIv8ZMnbie-x7RZ8_7o2X3PzMwpZHB9Aa3QDxsyJiSf14MvtXLHKHTcQpKYX-Mh1Vdeghv81rg0I8lB4tn7TZzx_Ulp46Rkr_lBX-N67GUxNlpAE6hpdY58IH7hEmARWr4C2MB2tH-BqXQbLJhzTvEg0I3k7bokZ2evM1fUreoMht3Bq7Q9tmYzBZ6Aofsn4wu8RzFRcFqMjlWTWaldTFyx7lwoJodppJ7A_GaFmONqs8CnWTGldkQ10zgGQJR7exyhN2OmyEW5nXR_eBDOzB4udAWEdrGibJ2nqQAUbOakw9gCns1vptQyRjLzWzBVr6bA3oGNp0xdxf7GpB0_KrU7cQ=w1920-h464)
 
-### Screenshots
+### Capturas de Pantalla
 
 - Horizontal Bars
 
