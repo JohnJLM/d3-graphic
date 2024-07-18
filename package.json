@@ -1,6 +1,6 @@
 {
   "name": "d3-graphic",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "D3 graphic to React Native",
   "main": "src/index.js",
   "scripts": {
