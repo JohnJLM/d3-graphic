@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
